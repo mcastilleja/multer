@@ -5,10 +5,10 @@ const path = require('path');
 
 // Crea el storage engine
 const storage = multer.diskStorage({
-    destination: './public/uploads',
+    destination: './public/uploads/',
     filename: function (req, file, cb) {
         cb( null, file.fieldname + '-' + Date.now() + path.extname(file.originalname) );
-    },
+    }
 });
 
 // Iniciamos a Upload
@@ -26,7 +26,7 @@ const checkFileType = (file, cb) => {
     const fileTypes = /jpeg|jpg|png|gif/
 
     // Verificamos la extension
-    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase)
+    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase())
 
     // Verificamos el MIME Type o tipo de archivo aun que se renombre un .exe a .jpg
     const mimetype = fileTypes.test(file.mimetype)
